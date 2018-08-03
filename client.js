@@ -32,18 +32,18 @@ socket.on('error', function (e) {
 });
 socket.emit('live-stream', 'hello me');
 
-// let cam = new v4l2camera.Camera("/dev/video0");
-// if (cam.configGet().formatName !== "MJPG") {
-//     console.log("NOTICE: MJPG camera required");
-//     console.log(cam.configGet().formatName);
-//     process.exit(1);
-// }
-// cam.start();
-// cam.capture(function (success) {
-//     var frame = cam.frameRaw();
-//     if (isVideoStream) {
-//         socket.emit('live-stream', frame.toString('base64'));
-//     }
+let cam = new v4l2camera.Camera("/dev/video0");
+if (cam.configGet().formatName !== "MJPG") {
+    console.log("NOTICE: MJPG camera required");
+    console.log(cam.configGet().formatName);
+    process.exit(1);
+}
+cam.start();
+cam.capture(function (success) {
+    var frame = cam.frameRaw();
+    if (isVideoStream) {
+        socket.emit('live-stream', frame.toString('base64'));
+    }
 
-//     cam.stop();
-// });
+    cam.stop();
+});
