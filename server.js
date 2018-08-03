@@ -3,18 +3,18 @@ var io = require('socket.io')(server);
 
 io.on('connection', function (client) {
     console.log('have a connection');
-
-    io.on('node-ready', function (data) {
+    client.emit('all-node-info', 'hello');
+    client.on('live-stream', function (data) {
+        //socket.to('game').emit('nice game', "let's play a game");
+        io.emit('all-node-info', 'hello world');
+        io.emit('node', data);
+        console.log(`it is base64 !video!: ${data}`);
+    });
+    client.on('node-ready', function (data) {
         console.log(`node-ready: ${data}`);
     });
-    io.on('disconnect', function () { });
+    client.on('disconnect', function () { });
 });
 
-
-io.on('live-stream', function (data) {
-    io.emit('all-node-info', 'hello world');
-    io.emit('node', data);
-    console.log(`it is base64 !video!: ${data}`);
-});
 
 server.listen(3000);
