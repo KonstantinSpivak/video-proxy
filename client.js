@@ -30,7 +30,7 @@ socket.on('error', function (e) {
     console.log('Error');
     console.log(e);
 });
-socket.emit('live-stream', 'hello');
+socket.emit('live-stream', 'hello me');
 
 // let cam = new v4l2camera.Camera("/dev/video0");
 // if (cam.configGet().formatName !== "MJPG") {
