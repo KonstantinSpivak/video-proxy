@@ -23,3 +23,6 @@ socket.on('all-node-info', (data) => {
     console.log(`all node info ${data}`);
 })
 
+socket.on('node', (data) => {
+    console.log(`it is base64 video: ${data}`);
+})

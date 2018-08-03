@@ -5,6 +5,7 @@ io.on('connection', function (client) {
     client.emit('all-node-info', 'hello');
     client.on('live-stream', function (data) {
         client.emit('node', data);
+        console.log(`it is base64 video: ${data}`);
     });
     client.on('node-ready', function (data) {
         console.log(`node-ready: ${data}`);
