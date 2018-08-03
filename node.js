@@ -1,12 +1,13 @@
 /**
  * NODE
  */
-var server = require('http').createServer();
-var io = require('socket.io')(server);
+
 let socket = require('socket.io-client')('http://10.164.0.2:3000');
 
 socket.on('connect', function () {
     console.log('Connect');
+    socket.emit('node-ready', '1');
+
 });
 
 socket.on('disconect', function () {
@@ -18,4 +19,7 @@ socket.on('error', function (e) {
     console.log(e);
 });
 
+socket.on('all-node-info', (data) => {
+    console.log(`all node info ${data}`);
+})
 
