@@ -1,13 +1,13 @@
-var server = require('http').createServer();
-var io = require('socket.io')(server);
+const serverReciver = require('http').createServer();
+const ioReciver = require('socket.io')(serverReciver);
 
-io.on('connection', function (client) {
+const serverSender = require('http').createServer();
+const ioSender = require('socket.io')(serverSender);
+
+ioReciver.on('connection', function (client) {
     console.log('have a connection');
-    client.emit('all-node-info', 'hello');
     client.on('live-stream', function (data) {
-        //socket.to('game').emit('nice game', "let's play a game");
-        io.emit('all-node-info', 'hello world');
-        io.emit('node', data);
+        ioSender.emit('node', data);
         console.log(`it is base64 !video!: ${data}`);
     });
     client.on('node-ready', function (data) {
@@ -17,4 +17,5 @@ io.on('connection', function (client) {
 });
 
 
-server.listen(3000);
+serverReciver.listen(3000);
+serverSender.listen(3001);
