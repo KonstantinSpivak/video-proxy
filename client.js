@@ -35,8 +35,15 @@ socket.emit('live-stream', 'hello me');
 let cam = new v4l2camera.Camera("/dev/video0");
 // console.log(cam.configGet());
 // console.log(cam.configSet());
-cam.configSet({ width: 320, height: 240, formatName: 'V4L2_PIX_FMT_MJPEG', format: 'V4L2_PIX_FMT_MJPEG' });
-console.log(cam.formats);
+
+cam.configSet({
+    formatName: 'MJPG',
+    format: 1196444237,
+    width: 640,
+    height: 480,
+    interval: { numerator: 1, denominator: 15 }
+});
+console.log(configGet());
 if (cam.configGet().formatName !== "MJPG") {
     console.log("NOTICE: MJPG camera required");
     console.log(cam.configGet().formatName);
