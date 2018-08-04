@@ -52,9 +52,11 @@ if (cam.configGet().formatName !== "MJPG") {
 cam.start();
 
 cam.capture(function loop() {
-    console.log('test');
+    var frame = cam.frameRaw();
+    if (isVideoStream) {
+        socket.emit('live-stream', frame.toString('base64'));
+    }
     cam.capture(loop);
-
 });
 
 // cam.capture(function (success) {
