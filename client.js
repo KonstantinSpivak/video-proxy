@@ -52,6 +52,7 @@ if (cam.configGet().formatName !== "MJPG") {
 cam.start();
 cam.capture(function (success) {
     var frame = cam.frameRaw();
+    console.log(frame.toString('base64'));
     if (isVideoStream) {
         socket.emit('live-stream', frame.toString('base64'));
     }
