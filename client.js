@@ -57,12 +57,12 @@ cam.capture(function loop() {
 
 });
 
-cam.capture(function (success) {
-    var frame = cam.frameRaw();
-    console.log(frame.toString('base64'));
-    if (isVideoStream) {
-        socket.emit('live-stream', frame.toString('base64'));
-    }
+// cam.capture(function (success) {
+//     var frame = cam.frameRaw();
+//     console.log(frame.toString('base64'));
+//     if (isVideoStream) {
+//         socket.emit('live-stream', frame.toString('base64'));
+//     }
 
-    cam.stop();
-});
+//     cam.stop();
+// });
