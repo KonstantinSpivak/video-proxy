@@ -36,7 +36,7 @@ let cam = new v4l2camera.Camera("/dev/video0");
 // console.log(cam.configGet());
 // console.log(cam.configSet());
 cam.configSet({ width: 320, height: 240, formatName: 'V4L2_PIX_FMT_MJPEG', format: 'V4L2_PIX_FMT_MJPEG' });
-console.log(cam.configGet());
+console.log(cam.formats);
 if (cam.configGet().formatName !== "MJPG") {
     console.log("NOTICE: MJPG camera required");
     console.log(cam.configGet().formatName);
