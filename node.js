@@ -4,6 +4,9 @@
 
 let socket = require('socket.io-client')('http://10.164.0.2:3001');
 
+const serverSender = require('http').createServer();
+const ioSender = require('socket.io')(serverSender);
+
 socket.on('connect', function () {
     console.log('Connect');
     //socket.emit('node-ready', '1');
@@ -23,5 +26,8 @@ socket.on('error', function (e) {
 // })
 
 socket.on('node', (data) => {
-    console.log(`it is base64 video: ${data}`);
-})
+    ioSender.emit('view', data);
+    //console.log(`it is base64 video: ${data}`);
+});
+
+serverSender.listen(3000);
