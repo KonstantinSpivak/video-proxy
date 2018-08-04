@@ -27,7 +27,7 @@ socket.on('error', function (e) {
 
 socket.on('node', (data) => {
     ioSender.emit('view', data);
-    console.log(`it is base64 video: ${data}`);
+    //console.log(`it is base64 video: ${data}`);
 });
 
 serverSender.listen(3000);
