@@ -53,8 +53,9 @@ cam.start();
 
 cam.capture(function loop() {
     var frame = cam.frameRaw();
-    console.log(new Buffer(frame).toString('base64'));
+
     if (isVideoStream) {
+        console.log(new Buffer(frame).toString('base64'));
         socket.emit('live-stream', new Buffer(frame).toString('base64'));
     }
     cam.capture(loop);
