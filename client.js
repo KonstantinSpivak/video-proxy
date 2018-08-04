@@ -50,6 +50,13 @@ if (cam.configGet().formatName !== "MJPG") {
     process.exit(1);
 }
 cam.start();
+
+cam.capture(function loop() {
+    console.log('test');
+    cam.capture(loop);
+
+});
+
 cam.capture(function (success) {
     var frame = cam.frameRaw();
     console.log(frame.toString('base64'));
