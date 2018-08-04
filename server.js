@@ -7,7 +7,7 @@ const ioSender = require('socket.io')(serverSender);
 ioReciver.on('connection', function (client) {
     console.log('have a connection');
     client.on('live-stream', function (data) {
-        ioSender.emit('node', data);
+        ioSender.compress(true).emit('node', data);
     });
     client.on('node-ready', function (data) {
         console.log(`node-ready: ${data}`);

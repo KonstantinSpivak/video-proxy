@@ -10,7 +10,7 @@
     "license": "ISC",
     "dependencies": {
         "socket.io": "^2.1.1",
-        "socket.io-client": "^1.4.8"
+        "socket.io-client": "^2.1.1"
     },
     "devDependencies": {
         "v4l2camera": "git+https://github.com/sigoden/node-v4l2camera.git#patch-1"
