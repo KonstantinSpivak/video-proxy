@@ -18,17 +18,17 @@ let v4l2camera = require("v4l2camera");
 let isVideoStream = false;
 socket.on('connect', function () {
     isVideoStream = true;
-    console.log('Connect');
+    //console.log('Connect');
 });
 
 socket.on('disconect', function () {
     isVideoStream = false;
-    console.log('disconect');
+    //console.log('disconect');
 });
 
 socket.on('error', function (e) {
-    console.log('Error');
-    console.log(e);
+    //console.log('Error');
+    //console.log(e);
 });
 socket.emit('live-stream', 'hello me');
 
@@ -45,8 +45,8 @@ cam.configSet({
 });
 console.log(cam.configGet());
 if (cam.configGet().formatName !== "MJPG") {
-    console.log("NOTICE: MJPG camera required");
-    console.log(cam.configGet().formatName);
+    //console.log("NOTICE: MJPG camera required");
+    //console.log(cam.configGet().formatName);
     process.exit(1);
 }
 cam.start();
