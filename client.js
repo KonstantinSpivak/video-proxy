@@ -33,6 +33,8 @@ socket.on('error', function (e) {
 socket.emit('live-stream', 'hello me');
 
 let cam = new v4l2camera.Camera("/dev/video0");
+console.log(cam.configGet());
+console.log(cam.configSet());
 if (cam.configGet().formatName !== "MJPG") {
     console.log("NOTICE: MJPG camera required");
     console.log(cam.configGet().formatName);
