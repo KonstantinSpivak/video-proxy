@@ -43,7 +43,7 @@ cam.configSet({
     height: 480,
     interval: { numerator: 1, denominator: 15 }
 });
-console.log(cam.configGet());
+//console.log(cam.configGet());
 if (cam.configGet().formatName !== "MJPG") {
     //console.log("NOTICE: MJPG camera required");
     //console.log(cam.configGet().formatName);
