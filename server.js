@@ -5,12 +5,12 @@ const serverSender = require('http').createServer();
 const ioSender = require('socket.io')(serverSender);
 
 ioReciver.on('connection', function (client) {
-    console.log('have a connection');
+    //console.log('have a connection');
     client.on('live-stream', function (data) {
         ioSender.compress(true).emit('node', data);
     });
     client.on('node-ready', function (data) {
-        console.log(`node-ready: ${data}`);
+        //console.log(`node-ready: ${data}`);
     });
     client.on('disconnect', function () { });
 });

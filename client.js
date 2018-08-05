@@ -57,7 +57,7 @@ cam.capture(function loop() {
     if (isVideoStream) {
         //console.log(new Buffer(frame).toString('base64'));
         //socket.compress(true).emit('live-stream', new Buffer(frame).toString('base64'));
-        socket.compress(true).emit('live-stream', frame);
+        socket.compress(true).emit('live-stream', new Buffer(frame));
     }
     cam.capture(loop);
 });
