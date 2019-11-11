@@ -2,14 +2,14 @@ const socket = require('socket.io-client')('http://35.242.194.228:3000');
 const v4l2camera = require('node-v4l2camera');
 
 let isVideoStream = false;
-socket.on('connect', function(e) {
+socket.on('connect', function() {
   isVideoStream = true;
-  console.log('Connect:', e);
+  console.log('Connect to the cloud remote server');
 });
 
 socket.on('disconnect', function() {
   isVideoStream = false;
-  console.log('disconnect');
+  console.log('disconnect from cloud remote servdr');
 });
 
 socket.on('error', function(e) {
