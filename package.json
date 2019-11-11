@@ -13,6 +13,6 @@
         "socket.io-client": "^2.1.1"
     },
     "devDependencies": {
-        "v4l2camera": "git+https://github.com/sigoden/node-v4l2camera.git#patch-1"
+        "node-v4l2camera": "1.0.4"
     }
 }
