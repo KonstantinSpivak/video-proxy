@@ -20,6 +20,7 @@
     <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
     <script>
       $(function () {
+        let preMemo = null;
         function blobToB64(data) {
             if ('TextDecoder' in window) {
             // Decode as UTF-8
@@ -34,11 +35,15 @@
             }
         }
         var socket = io.connect('http://35.242.194.228:3001');
+
         
         socket.on('node', function(msg){
             $("#streamImg").attr('src', `data:image/png;base64, ${btoa(String.fromCharCode.apply(null, new Uint8Array(msg)))}`);
         });
         socket.on('memo', function(memo){
+            if(preMemo !== null) {
+                socket.emit('preMemo', preMemo);
+            }
            console.log('memo is', memo);
         });
       });
