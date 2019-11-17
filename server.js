@@ -6,10 +6,6 @@ ioSender.on('connection', client => {
   let socketId = client.id;
   console.log('connect client:', socketId);
   client.emit('memo', client.id);
-
-  client.on('preMemo', function(preMemo) {
-    console.log('preMemo:', preMemo);
-  });
   client.on('disconnect', function() {
     console.log('disconnect client:', socketId);
   });

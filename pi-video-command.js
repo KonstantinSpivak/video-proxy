@@ -1,4 +1,4 @@
-const socket = require('socket.io-client')('http://35.242.194.228:3000');
+const socket = require('socket.io-client')('http://35.242.194.228:3003');
 const v4l2camera = require('node-v4l2camera');
 
 let isVideoStream = false;

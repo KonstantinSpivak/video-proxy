@@ -1,5 +1,5 @@
 /**
- * NODE
+ * DEPRECATED
  */
 
 let socket = require('socket.io-client')('http://10.164.0.2:3001');
@@ -7,27 +7,14 @@ let socket = require('socket.io-client')('http://10.164.0.2:3001');
 const serverSender = require('http').createServer();
 const ioSender = require('socket.io')(serverSender);
 
-socket.on('connect', function () {
-    //console.log('Connect');
-    //socket.emit('node-ready', '1');
-});
+socket.on('connect', function() {});
 
-socket.on('disconect', function () {
-    //console.log('disconect');
-});
+socket.on('disconect', function() {});
 
-socket.on('error', function (e) {
-    //console.log('Error');
-    //console.log(e);
-});
+socket.on('error', function(e) {});
 
-// socket.on('all-node-info', (data) => {
-//     console.log(`all node info ${data}`);
-// })
-
-socket.on('node', (data) => {
-    ioSender.compress(true).emit('view', data.toString('base64'));
-    //console.log(`it is base64 video: ${data}`);
+socket.on('node', data => {
+  ioSender.compress(true).emit('view', data.toString('base64'));
 });
 
 serverSender.listen(3000);
