@@ -1,4 +1,5 @@
-const socket = require('socket.io-client')('http://35.242.194.228:3003');
+//const socket = require('socket.io-client')('http://192.168.1.17:3003'); //http://52.148.215.164:3003
+const socket = require('socket.io-client')('http://52.148.215.164:3003');
 const v4l2camera = require('node-v4l2camera');
 
 let isVideoStream = false;
@@ -35,11 +36,14 @@ if (cam.configGet().formatName !== 'MJPG') {
 }
 
 cam.start();
-
+let oneFrame = true;
 cam.capture(function loop() {
   var frame = cam.frameRaw();
   if (isVideoStream) {
     socket.compress(true).emit('live-stream', new Buffer(frame));
+    if(oneFrame === true)
+      require("fs").createWriteStream("img/result.jpg").end(Buffer(frame));
+    oneFrame = false;
   }
   cam.capture(loop);
 });
