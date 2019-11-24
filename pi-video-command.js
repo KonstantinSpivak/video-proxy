@@ -13,7 +13,9 @@ socket.on('disconnect', function() {
   isVideoStream = false;
   console.log('disconnect from cloud remote servdr');
 });
-
+socket.on('user_game', function(data) {
+  console.log('set user_game', data);
+});
 socket.on('error', function(e) {
   console.log('Error', e);
 });
