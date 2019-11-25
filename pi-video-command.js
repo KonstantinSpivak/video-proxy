@@ -16,6 +16,9 @@ socket.on('disconnect', function() {
 socket.on('user_game', function(data) {
   console.log('set user_game', data);
 });
+socket.on('commands', function(data) {
+  console.log('commands', data);
+});
 socket.on('error', function(e) {
   console.log('Error', e);
 });
