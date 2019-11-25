@@ -14,6 +14,9 @@ socket.on('disconnect', function() {
   console.log('disconnect from cloud remote servdr');
 });
 socket.on('user_game', function(data) {
+  setTimeout(() => {
+    socket.emit('isWin', data);
+  }, 7000);
   console.log('set user_game', data);
 });
 socket.on('commands', function(data) {
