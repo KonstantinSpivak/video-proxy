@@ -14,6 +14,7 @@
     },
     "devDependencies": {
         "node-v4l2camera": "1.0.4",
-        "pca9685": "4.0.3"
+        "pca9685": "4.0.3",
+        "i2c-bus": "5.1.0"
     }
 }
