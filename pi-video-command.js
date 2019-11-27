@@ -12,9 +12,8 @@ const options = {
 const pulseLengths = [1300, 1500, 1700];
 const steeringChannel = 4;
 
-
 // variables used in servoLoop
-const pwm;
+let pwm;
 let nextPulse = 0;
 let timer;
 function servoLoop() {
@@ -92,12 +91,12 @@ cam.capture(function loop() {
   cam.capture(loop);
 });
 
-process.on("SIGINT", function () {
-  console.log("\nGracefully shutting down from SIGINT (Ctrl-C)");
+process.on('SIGINT', function() {
+  console.log('\nGracefully shutting down from SIGINT (Ctrl-C)');
 
   if (timer) {
-      clearTimeout(timer);
-      timer = null;
+    clearTimeout(timer);
+    timer = null;
   }
 
   pwm.dispose();
