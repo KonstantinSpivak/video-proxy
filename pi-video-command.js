@@ -9,6 +9,20 @@ const options = {
   frequency: 50,
   debug: false
 };
+const pulseLengths = [1300, 1500, 1700];
+const steeringChannel = 4;
+
+
+// variables used in servoLoop
+const pwm;
+let nextPulse = 0;
+let timer;
+function servoLoop() {
+  timer = setTimeout(servoLoop, 500);
+
+  pwm.setPulseLength(steeringChannel, pulseLengths[nextPulse]);
+  nextPulse = (nextPulse + 1) % pulseLengths.length;
+}
 pwm = new Pca9685Driver(options, function(err) {
   if (err) {
     console.error('Error initializing PCA9685');
@@ -18,30 +32,8 @@ pwm = new Pca9685Driver(options, function(err) {
 
   // Set channel 0 to turn on on step 42 and off on step 255
   // (with optional callback)
-  pwm.setPulseRange(4, 42, 255, function() {
-    if (err) {
-      console.error('Error setting pulse range.');
-    } else {
-      console.log('Pulse range set.');
-    }
-  });
-
-  setTimeout(() => {
-    pwm.setPulseRange(4, 99, 255, function() {
-      if (err) {
-        console.error('Error setting pulse range.');
-      } else {
-        console.log('Pulse range set. 2');
-      }
-    });
-  }, 4000);
+  servoLoop();
 });
-
-setTimeout(() => {
-  pwm.setPulseRange(4, 1, 255, function() {
-    console.log('Pulse range set. 3');
-  });
-}, 6000);
 
 let isVideoStream = false;
 
@@ -98,4 +90,16 @@ cam.capture(function loop() {
     //   oneFrame = false;
   }
   cam.capture(loop);
+});
+
+process.on("SIGINT", function () {
+  console.log("\nGracefully shutting down from SIGINT (Ctrl-C)");
+
+  if (timer) {
+      clearTimeout(timer);
+      timer = null;
+  }
+
+  pwm.dispose();
+  cam.stop();
 });
