@@ -18,36 +18,24 @@ pwm = new Pca9685Driver(options, function(err) {
 
   // Set channel 0 to turn on on step 42 and off on step 255
   // (with optional callback)
-  pwm.setPulseRange(0, 42, 255, function() {
+  pwm.setPulseRange(4, 42, 255, function() {
     if (err) {
       console.error('Error setting pulse range.');
     } else {
       console.log('Pulse range set.');
     }
   });
+});
 
-  // Set the pulse length to 1500 microseconds for channel 2
-  pwm.setPulseLength(1, 1500);
-  pwm.setPulseLength(2, 1500);
-  pwm.setPulseLength(3, 1500);
-  pwm.setPulseLength(4, 1500);
-  pwm.setPulseLength(5, 1500);
-  // Set the duty cycle to 25% for channel 8
-  pwm.setDutyCycle(8, 0.25);
-
-  // Turn off all power to channel 6
-  // (with optional callback)
-  pwm.channelOff(6, function() {
+setTimeout(() => {
+  pwm.setPulseRange(4, 150, 255, function() {
     if (err) {
-      console.error('Error turning off channel.');
+      console.error('Error setting pulse range.');
     } else {
-      console.log('Channel 6 is off.');
+      console.log('Pulse range set.');
     }
   });
-
-  // Turn on channel 3 (100% power)
-  pwm.channelOn(3);
-});
+}, 4000);
 let isVideoStream = false;
 
 socket.on('connect', function() {
