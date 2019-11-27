@@ -35,17 +35,13 @@ pwm = new Pca9685Driver(options, function(err) {
       }
     });
   }, 4000);
-
-  setTimeout(() => {
-    pwm.setPulseRange(4, 150, 255, function() {
-      if (err) {
-        console.error('Error setting pulse range.');
-      } else {
-        console.log('Pulse range set. 2');
-      }
-    });
-  }, 6000);
 });
+
+setTimeout(() => {
+  pwm.setPulseRange(4, 1, 255, function() {
+    console.log('Pulse range set. 3');
+  });
+}, 6000);
 
 let isVideoStream = false;
 
